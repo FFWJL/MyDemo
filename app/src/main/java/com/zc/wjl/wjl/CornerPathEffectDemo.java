@@ -10,7 +10,7 @@ import android.graphics.PathEffect;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**把所有拐角变成圆角
+/**把Path的拐角变成圆角Demo
  * @author Wjl.
  * @date 2018\1\13 0013
  */
