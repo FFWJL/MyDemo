@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".surfaceview.SurfaceTestActivity"
+            android:name=".surfaceviewdemo.SurfaceTestActivity"
             android:screenOrientation="portrait"/>
     </application>
 
