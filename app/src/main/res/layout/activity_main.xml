@@ -13,12 +13,13 @@
         android:layout_height="wrap_content"
         android:onClick="startSurfaceView"
         android:text="SurfaceView"/>
-    <ImageView
-        android:src="@drawable/batman"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
-    <com.zc.wjl.wjl.CanvasSkewDemo
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/batman"/>
+
+    <com.zc.wjl.wjl.Camera3DDemo
         android:layout_width="300dp"
         android:layout_height="300dp"/>
 
