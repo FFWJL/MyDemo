@@ -13,7 +13,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * 组合效果类的 PathEffect 。分别按照两种 PathEffect 分别对目标进行绘制
+ * Demo
+ * 对不同的Path使用，组合效果类的 PathEffect 。分别按照两种 PathEffect 分别对目标进行绘制
  *
  * @author Wjl.
  * @date 2018\1\13 0013
