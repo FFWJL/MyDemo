@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * 把线条进行随机偏离，让轮廓变得乱七八糟
+ * 把线条进行随机偏离，让轮廓变得乱七八糟Demo
  *
  * @author Wjl.
  * @date 2018\1\13 0013
