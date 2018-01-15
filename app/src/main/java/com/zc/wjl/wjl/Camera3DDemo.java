@@ -38,14 +38,7 @@ public class Camera3DDemo extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(3);
         mCamera = new Camera();
-
         mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.batman);
-
-
-
-
-
-
         mMatrix = new Matrix();
     }
 
@@ -64,9 +57,7 @@ public class Camera3DDemo extends View {
         mMatrix.postTranslate(getWidth() / 2, getHeight() / 2);
         mCamera.restore();
         canvas.concat(mMatrix);
-
         canvas.drawBitmap(mBitmap, getMeasuredWidth() / 2 - 100, getMeasuredHeight() / 2 - 100, mPaint);
-
         canvas.restore();
     }
 }
