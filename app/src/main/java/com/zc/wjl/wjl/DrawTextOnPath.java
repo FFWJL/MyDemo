@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * 沿着Path绘制文字
+ * 沿着Path绘制文字Demo
  *
  * @author Wjl.
  * @date 2018\1\15 0015
