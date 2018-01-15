@@ -8,9 +8,14 @@
     android:orientation="vertical"
     tools:context="com.zc.wjl.wjl.MainActivity">
 
-    <com.zc.wjl.wjl.GetTextPathDemo
-        android:layout_marginTop="50dp"
-        android:layout_width="350dp"
-        android:layout_height="350dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startSurfaceView"
+        android:text="SurfaceView"/>
+
+    <com.zc.wjl.wjl.DrawTextOnPath
+        android:layout_width="300dp"
+        android:layout_height="500dp"/>
 
 </LinearLayout>
