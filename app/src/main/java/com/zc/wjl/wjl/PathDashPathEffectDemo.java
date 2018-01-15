@@ -11,7 +11,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * 使用一个 Path 来绘制虚线
+ * Demo
+ * 使用一个 Path 来绘制虚线，虚线可以是Path绘制的形状，比如圆、三角形...
  *
  * @author Wjl.
  * @date 2018\1\13 0013
@@ -21,6 +22,7 @@ public class PathDashPathEffectDemo extends View {
     private Paint mPaint;
     private Path mPath;
     private Path shape;
+
     public PathDashPathEffectDemo(Context context) {
         this(context, null);
     }
@@ -39,7 +41,7 @@ public class PathDashPathEffectDemo extends View {
         shape = new Path();
         shape.addCircle(10, 10, 10, Path.Direction.CW);
         //使用圆来绘制虚线，shape是圆的path， 1是偏移量
-        PathEffect pathEffect = new PathDashPathEffect(shape,20, 1, PathDashPathEffect.Style.TRANSLATE);
+        PathEffect pathEffect = new PathDashPathEffect(shape, 20, 1, PathDashPathEffect.Style.TRANSLATE);
         mPaint.setPathEffect(pathEffect);
     }
 
