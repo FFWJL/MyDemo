@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * 组合效果类的 PathEffect 。它是先对目标 Path 使用一个 PathEffect，然后再对这个改变后的 Path 使用另一个 PathEffect
+ * 对单个Path使用，组合效果的 PathEffect 。它是先对目标 Path 使用一个 PathEffect，然后再对这个改变后的 Path 使用另一个 PathEffect
  *
  * @author Wjl.
  * @date 2018\1\13 0013
