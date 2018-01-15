@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * 使用虚线来绘制线条
+ * 使用虚线来绘制线条Demo
  *
  * @author Wjl.
  * @date 2018\1\13 0013
