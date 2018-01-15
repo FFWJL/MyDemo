@@ -7,9 +7,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.zc.wjl.wjl.adapterdesignpattern.Output220Volt;
-import com.zc.wjl.wjl.adapterdesignpattern.VoltClassAdapter;
 import com.zc.wjl.wjl.adapterdesignpattern.VoltObjAdapter;
-import com.zc.wjl.wjl.surfaceview.SurfaceTestActivity;
+import com.zc.wjl.wjl.surfaceviewdemo.SurfaceTestActivity;
 
 public class MainActivity extends AppCompatActivity {
 

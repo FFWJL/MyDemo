@@ -1,4 +1,4 @@
-package com.zc.wjl.wjl.surfaceview;
+package com.zc.wjl.wjl.surfaceviewdemo;
 
 import android.content.Context;
 import android.graphics.Canvas;
