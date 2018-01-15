@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * 模拟简单的光照效果
+ * 模拟简单的光照效果Demo
  *
  * @author Wjl.
  * @date 2018\1\13 0013
