@@ -52,6 +52,7 @@ public class DrawTextOnPath extends View {
         mPath.lineTo(750, 520);
         canvas.drawPath(mPath, mPaint);
         mPaint.setColor(Color.RED);
-        canvas.drawTextOnPath("Hello World!抠门兔网络科技有限公司", mPath, 0, 0, mPaint);
+        //hOffset 和 vOffset。它们是文字相对于 Path 的水平偏移量和竖直偏移量，利用它们可以调整文字的位置
+        canvas.drawTextOnPath("Hello World!抠门兔网络科技有限公司", mPath, 20, 30, mPaint);
     }
 }
