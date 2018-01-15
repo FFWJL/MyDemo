@@ -10,7 +10,7 @@ import android.graphics.PathEffect;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
+/**Demo
  * 获取实际 Path ，指的就是 drawPath() 的绘制内容的轮廓，要算上线条宽度和设置的 PathEffect
  *
  * @author Wjl.
