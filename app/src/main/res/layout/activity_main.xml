@@ -4,24 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#555555"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.zc.wjl.wjl.MainActivity">
 
     <Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:onClick="startSurfaceView"
-    android:text="SurfaceView"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startSurfaceView"
+        android:text="SurfaceView"/>
 
     <!--<ImageView-->
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content"-->
     <!--android:src="@drawable/batman"/>-->
-
-    <com.zc.wjl.wjl.CircleAnimDemo
-        android:id="@+id/circle"
+    <FrameLayout
+        android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
+        <com.zc.wjl.wjl.CircleAnimDemo
+            android:id="@+id/circle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!--<com.zc.wjl.wjl.SparkView-->
+            <!--android:id="@+id/spark1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"/>-->
+
+        <!--<com.zc.wjl.wjl.SparkView-->
+            <!--android:id="@+id/spark2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"/>-->
+    </FrameLayout>
 </LinearLayout>

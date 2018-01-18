@@ -1,11 +1,15 @@
 package com.zc.wjl.wjl;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -52,7 +56,7 @@ public class CircleAnimDemo extends View {
         mCirclePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mDotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mDotPaint.setColor(Color.RED);
-        mCirclePaint.setColor(Color.BLACK);
+        mCirclePaint.setColor(Color.GREEN);
         mCirclePaint.setStyle(Paint.Style.STROKE);
         mCirclePaint.setStrokeWidth(3);
         mRectF = new RectF();
@@ -68,14 +72,38 @@ public class CircleAnimDemo extends View {
     }
 
     private void drawDot(Canvas canvas) {
+        Log.d("flosafhnweu", "onAnimationEnd: " + angle);
         //当前位置与X轴的夹角
         float dotAngle = angle - 90;
-        float centerX = getMeasuredWidth() / 2;
-        float centerY = getMeasuredHeight() / 2;
-        canvas.drawCircle(centerX + radius * (float) Math.cos(dotAngle * Math.PI / 180), centerY + radius * (float) Math.sin(dotAngle * Math.PI / 180), DOT_RADIUS, mDotPaint);
+        float centerX = getMeasuredWidth() / 2 + radius * (float) Math.cos(dotAngle * Math.PI / 180);
+        float centerY = getMeasuredHeight() / 2 + radius * (float) Math.sin(dotAngle * Math.PI / 180);
+        if (null != mOnCurrentCenterListener) {
+            if (360 == angle) {
+                mOnCurrentCenterListener.currentCenterPoint(-1, -1);
+            } else {
+                mOnCurrentCenterListener.currentCenterPoint(centerX, centerY);
+            }
+        }
+        canvas.drawCircle(centerX, centerY, DOT_RADIUS, mDotPaint);
     }
 
     private void drawCircle(Canvas canvas) {
         canvas.drawArc(mRectF, -90, angle, false, mCirclePaint);
+    }
+
+    public ObjectAnimator anim() {
+        ObjectAnimator oa = ObjectAnimator.ofFloat(this, "angle", 0, 360);
+        oa.setDuration(3000);
+        return oa;
+    }
+
+    OnCurrentCenterListener mOnCurrentCenterListener;
+
+    public interface OnCurrentCenterListener {
+        void currentCenterPoint(float x, float y);
+    }
+
+    public void setOnCurrentCenter(OnCurrentCenterListener listener) {
+        mOnCurrentCenterListener = listener;
     }
 }
