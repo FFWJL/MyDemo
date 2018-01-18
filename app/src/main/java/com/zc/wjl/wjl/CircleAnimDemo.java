@@ -9,7 +9,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * 圆心在坐标a，b，圆弧上任意点坐标(a+R*cosα,b+R*sinα)
+ * 圆心在坐标a，b，圆弧上任意点坐标
+ * x = a + r * cos(angle * π /180) 
+ * y = b + r * sin(angle * π /180) 
  *
  * @author Wjl.
  * @date 2018\1\17 0017
