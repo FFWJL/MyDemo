@@ -1,7 +1,5 @@
 package com.zc.wjl.wjl;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.content.Context;
@@ -14,10 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 
-import java.util.Random;
 
 /**
- * 随机颜色
+ * 随机颜色 全屏分布 最后收缩 全屏之后随机移动一些距离 类似星空效果
  *
  * @author Wjl.
  * @date 2018\1\18 0018
