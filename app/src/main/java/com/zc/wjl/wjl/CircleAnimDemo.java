@@ -91,7 +91,7 @@ public class CircleAnimDemo extends View {
 
     public ObjectAnimator anim() {
         ObjectAnimator oa = ObjectAnimator.ofFloat(this, "angle", 0, 360);
-        oa.setDuration(5000);
+        oa.setDuration(2500);
         return oa;
     }
 

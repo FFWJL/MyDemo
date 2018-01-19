@@ -12,10 +12,13 @@ import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 
 import java.util.Random;
 
 /**
+ * 随机颜色
+ *
  * @author Wjl.
  * @date 2018\1\18 0018
  */
@@ -65,7 +68,7 @@ public class SparkView extends View {
         mPointF = new PointF();
         newPointF = new PointF();
         radius = ScreenUtil.dp2px(0.5f, context);
-        newRadius = ScreenUtil.dp2px(20f, context);
+        newRadius = ScreenUtil.dp2px(205f, context);
     }
 
     @Override
@@ -98,23 +101,23 @@ public class SparkView extends View {
         float endX = x + newRadius * (float) Math.cos(newAngle * Math.PI / 180);
         float endY = y + newRadius * (float) Math.sin(newAngle * Math.PI / 180);
         canvas.drawCircle(newPointF.x, newPointF.y, radius, mPaint);
-        Log.d("noqnvosfa", "x=" + x + "----y=" + y + "----endX=" + endX + "----endY=" + endY);
-        float resX = (float) (Math.random() * endX);
-        float resY = (float) (Math.random() * endY);
-        startAnim(x, y, resX, resY);
+        float deltaX = endX - x;
+        float deltaY = endY - y;
+//        //求随机半径
+//        float r = (float) Math.sqrt(((0.01f + Math.random()) * deltaX) * ((0.01f + Math.random()) * deltaX)
+//                + ((0.01f + Math.random()) * deltaY) * ((0.01f + Math.random()) * deltaY));
+//        float a = x + r * (float) Math.cos(newAngle * Math.PI / 180);
+//        float b = y + r * (float) Math.sin(newAngle * Math.PI / 180);
+        float a = x + (float) (Math.random() * deltaX);
+        float b = y + (float) (Math.random() * deltaY);
+        startAnim(x, y, a, b);
     }
 
     private void startAnim(float x, float y, float endX, float endY) {
-        Log.d("noqnvosfa", "startAnim");
-        oa = ObjectAnimator.ofObject(this, "newPointF", new PointFEvaluator(), new PointF(x, y), new PointF(endX, endY));
-        oa.setDuration(3000);
-        oa.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                oa.start();
-            }
-        });
+        Log.d("noqnasgsdfdvosfa", "x=" + x + "----y=" + y + "----endX=" + endX + "----endY=" + endY);
+        oa = ObjectAnimator.ofObject(this, "newPointF", new PointFEvaluator(), new PointF(x, y), new PointF(endX, endY), new PointF(x, y));
+        oa.setDuration(4000);
+        oa.setInterpolator(new AccelerateInterpolator());
     }
 
     public ObjectAnimator anim() {

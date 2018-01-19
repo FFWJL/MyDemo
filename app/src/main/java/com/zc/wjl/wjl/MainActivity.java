@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         cd = (CircleAnimDemo) findViewById(R.id.circle);
         oa = cd.anim();
         pointF = new PointF();
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 300; i++) {
             container.addView(getView());
         }
         cd.setOnCurrentCenter(new CircleAnimDemo.OnCurrentCenterListener() {
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 pointF.set(x, y);
-                for (int i = 1; i < 501; i++) {
+                for (int i = 1; i < 301; i++) {
                     ((SparkView) container.getChildAt(i)).setPointF(pointF);
                 }
             }
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     public void startSurfaceView(View view) {
 //        startActivity(new Intent(this, SurfaceTestActivity.class));
         oa.start();
-        for (int i = 1; i < 501; i++) {
+        for (int i = 1; i < 301; i++) {
             SparkView s = (SparkView) container.getChildAt(i);
             ObjectAnimator anim = s.anim();
             if (!anim.isRunning()) {
