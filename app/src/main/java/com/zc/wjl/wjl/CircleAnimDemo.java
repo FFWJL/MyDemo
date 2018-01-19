@@ -1,7 +1,5 @@
 package com.zc.wjl.wjl;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -93,7 +91,7 @@ public class CircleAnimDemo extends View {
 
     public ObjectAnimator anim() {
         ObjectAnimator oa = ObjectAnimator.ofFloat(this, "angle", 0, 360);
-        oa.setDuration(3000);
+        oa.setDuration(5000);
         return oa;
     }
 
