@@ -9,19 +9,19 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
+import android.view.SurfaceView;
+import android.view.SurfaceHolder;
 import android.view.animation.AccelerateInterpolator;
 
 
 /**
- * 随机颜色 全屏分布 最后收缩 全屏之后随机移动一些距离 类似星空效果
- * 能不能在SurfaceView中去做
- *
  * @author Wjl.
- * @date 2018\1\18 0018
+ * @date 2018\1\19 0019
  */
 
-public class SparkView extends View {
+public class SparkSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
+    private SurfaceHolder mSurfaceHolder;
+    private boolean isRunning;
     private Paint mPaint;
     /**
      * 半径
@@ -41,6 +41,7 @@ public class SparkView extends View {
     private float newAngle;
     private PointF newPointF;
     private ObjectAnimator oa;
+    private Context mContext;
 
     public void setNewPointF(PointF newPointF) {
         this.newPointF = newPointF;
@@ -51,16 +52,20 @@ public class SparkView extends View {
         mPointF = pointF;
     }
 
-    public SparkView(Context context) {
+    public SparkSurfaceView(Context context) {
         this(context, null);
     }
 
-    public SparkView(Context context, AttributeSet attrs) {
+    public SparkSurfaceView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SparkView(Context context, AttributeSet attrs, int defStyle) {
+    public SparkSurfaceView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mContext = context;
+        //获取SurfaceHolder实例
+        mSurfaceHolder = getHolder();
+        mSurfaceHolder.addCallback(this);
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(Color.WHITE);
         mPointF = new PointF();
@@ -70,12 +75,69 @@ public class SparkView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        isRunning = true;
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint.setColor(Color.BLUE);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(3);
+        new MyThread().start();
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        isRunning = false;
+    }
+
+    private class MyThread extends Thread {
+
+        @Override
+        public void run() {
+            super.run();
+            while (isRunning) {
+                try {
+                    sleep(80);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                doSomething();
+            }
+        }
+    }
+
+    private void doSomething() {
+        Canvas canvas = mSurfaceHolder.lockCanvas();
+        try {
+            drawView(canvas);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (null != canvas) {
+                //提交视图
+                mSurfaceHolder.unlockCanvasAndPost(canvas);
+            }
+        }
+    }
+
+    /**
+     * 绘制
+     *
+     * @param canvas
+     */
+    private void drawView(Canvas canvas) {
         mPaint.setColor(randomColor());
         drawSpark(canvas);
     }
-
     private void drawSpark(Canvas canvas) {
         float x, y;
 //        int typeFloat = (int) (Math.random() * 100);
