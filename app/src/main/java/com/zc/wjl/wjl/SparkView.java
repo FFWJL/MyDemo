@@ -41,6 +41,7 @@ public class SparkView extends View {
     private float newAngle;
     private PointF newPointF;
     private ObjectAnimator oa;
+    private ObjectAnimator[] mAnimators = new ObjectAnimator[300];
 
     public void setNewPointF(PointF newPointF) {
         this.newPointF = newPointF;
@@ -72,26 +73,14 @@ public class SparkView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        mPaint.setColor(randomColor());
-        drawSpark(canvas);
+        for (int i = 0; i < 300; i++) {
+            drawSpark(canvas, i);
+        }
     }
 
-    private void drawSpark(Canvas canvas) {
+    private void drawSpark(Canvas canvas, int i) {
+        mPaint.setColor(randomColor());
         float x, y;
-//        int typeFloat = (int) (Math.random() * 100);
-//        int nextFloatX = (int) (Math.random() * 100);
-//        int nextFloatY = (int) (Math.random() * 100);
-//        if (typeFloat < 25) {
-//        } else if (typeFloat >= 25 && typeFloat < 50) {
-//            nextFloatX = -nextFloatX;
-//        } else if (typeFloat >= 50 && typeFloat < 75) {
-//            nextFloatY = -nextFloatY;
-//        } else {
-//            nextFloatX = -nextFloatX;
-//            nextFloatY = -nextFloatY;
-//        }
-//        x = mPointF.x + nextFloatX;
-//        y = mPointF.y + nextFloatY;
         x = mPointF.x;
         y = mPointF.y;
         //随机角度
@@ -102,26 +91,32 @@ public class SparkView extends View {
         canvas.drawCircle(newPointF.x, newPointF.y, radius, mPaint);
         float deltaX = endX - x;
         float deltaY = endY - y;
-//        //求随机半径
-//        float r = (float) Math.sqrt(((0.01f + Math.random()) * deltaX) * ((0.01f + Math.random()) * deltaX)
-//                + ((0.01f + Math.random()) * deltaY) * ((0.01f + Math.random()) * deltaY));
-//        float a = x + r * (float) Math.cos(newAngle * Math.PI / 180);
-//        float b = y + r * (float) Math.sin(newAngle * Math.PI / 180);
         float a = x + (float) (Math.random() * deltaX);
         float b = y + (float) (Math.random() * deltaY);
-        startAnim(x, y, a, b);
+        setAnim(x, y, a, b, i);
     }
 
-    private void startAnim(float x, float y, float endX, float endY) {
-        Log.d("noqnasgsdfdvosfa", "x=" + x + "----y=" + y + "----endX=" + endX + "----endY=" + endY);
-        oa = ObjectAnimator.ofObject(this, "newPointF", new PointFEvaluator(), new PointF(x, y), new PointF(endX, endY), new PointF(x, y));
-        oa.setDuration(3500);
-        oa.setInterpolator(new AccelerateInterpolator());
+    private void setAnim(float x, float y, float endX, float endY, int i) {
+        Log.d("animadhwqf", "startAnim: " + i + "endx====" + endX + "endy====" + endY);
+        mAnimators[i] = ObjectAnimator.ofObject(this, "newPointF", new PointFEvaluator(), new PointF(x, y), new PointF(endX, endY), new PointF(x, y));
+//      ObjectAnimator  oa = ObjectAnimator.ofObject(this, "newPointF", new PointFEvaluator(), new PointF(x, y), new PointF(endX, endY), new PointF(x, y));
+        mAnimators[i].setDuration(3500);
+        mAnimators[i].setInterpolator(new AccelerateInterpolator());
     }
 
-    public ObjectAnimator anim() {
-        return oa;
+    public void startAnim() {
+        if (mAnimators.length == 0) {
+            throw new NullPointerException("*****************动画集合为空***************");
+        }
+        for (ObjectAnimator animator : mAnimators) {
+//            animator.start();
+            Log.d("animadhfdsawqf", "startAnim: ");
+        }
     }
+
+//    public ObjectAnimator anim() {
+//        return oa;
+//    }
 
     private class PointFEvaluator implements TypeEvaluator<PointF> {
         PointF pointF = new PointF();
@@ -136,7 +131,6 @@ public class SparkView extends View {
     }
 
     private int randomColor() {
-//        alpha = Math.min(Math.max(1, alpha), 255);
         return Color.argb(255, (int) ((Math.random() + 0.01) * 256), (int) ((Math.random() + 0.01) * 256), (int) ((Math.random() + 0.01) * 256));
     }
 }

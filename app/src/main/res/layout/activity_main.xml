@@ -27,5 +27,9 @@
             android:id="@+id/circle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+        <com.zc.wjl.wjl.SparkView
+            android:id="@+id/spark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </FrameLayout>
 </LinearLayout>

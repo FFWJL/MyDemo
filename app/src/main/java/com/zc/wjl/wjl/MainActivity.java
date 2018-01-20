@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private CircleAnimDemo cd;
     private PointF pointF;
     private FrameLayout container;
+    private SparkView mSparkView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,12 @@ public class MainActivity extends AppCompatActivity {
 //        Toast.makeText(this, "类适配器模式，结果===" + voltClassAdapter.output5V(), Toast.LENGTH_SHORT).show();
         container = (FrameLayout) findViewById(R.id.fl_container);
         cd = (CircleAnimDemo) findViewById(R.id.circle);
+        mSparkView = (SparkView) findViewById(R.id.spark);
         oa = cd.anim();
         pointF = new PointF();
-        for (int i = 0; i < 300; i++) {
-            container.addView(getView());
-        }
+//        for (int i = 0; i < 300; i++) {
+//            container.addView(getView());
+//        }
         cd.setOnCurrentCenter(new CircleAnimDemo.OnCurrentCenterListener() {
             @Override
             public void currentCenterPoint(float x, float y) {
@@ -40,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 pointF.set(x, y);
-                for (int i = 1; i < 301; i++) {
-                    ((SparkView) container.getChildAt(i)).setPointF(pointF);
-                }
+//                for (int i = 1; i < 301; i++) {
+                mSparkView.setPointF(pointF);
+//                }
             }
         });
     }
@@ -56,13 +58,15 @@ public class MainActivity extends AppCompatActivity {
     public void startSurfaceView(View view) {
 //        startActivity(new Intent(this, SurfaceTestActivity.class));
         oa.start();
-        for (int i = 1; i < 301; i++) {
-            SparkView s = (SparkView) container.getChildAt(i);
-            ObjectAnimator anim = s.anim();
-            if (!anim.isRunning()) {
-                Log.d("nksdlanfqw", "startSurfaceView: ");
-                anim.start();
-            }
-        }
+        mSparkView.startAnim();
+//        for (int i = 1; i < 301; i++) {
+//            SparkView s = (SparkView) container.getChildAt(i);
+//            ObjectAnimator anim = s.anim();
+//        ObjectAnimator anim = mSparkView.anim();
+//        if (!anim.isRunning()) {
+//            Log.d("nksdlanfqw", "startSurfaceView: ");
+//            anim.start();
+//        }
+//        }
     }
 }
