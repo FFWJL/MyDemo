@@ -108,7 +108,6 @@ public class OrderTrackView extends View {
         setMeasuredDimension(width, height);
     }
 
-    //circleRadius = getMeasuredWidth() / 2 - circleWidth / 2;
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
