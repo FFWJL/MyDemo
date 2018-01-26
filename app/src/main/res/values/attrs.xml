@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="LogisticsTrack">
+        <attr name="circleColor" format="color"/>
+        <attr name="lineColor1" format="color"/>
+        <attr name="lineWidth" format="dimension"/>
+        <attr name="circleWidth" format="dimension"/>
+        <attr name="firstCircleWidth" format="dimension"/>
+        <attr name="firstColor" format="color"/>
+    </declare-styleable>
 </resources>
