@@ -19,6 +19,7 @@ import com.zc.wjl.wjl.R;
 
 public class TrackView extends View {
     private View mView;
+    private Context mContext;
     private OrderTrackView mOrderTrackView;
     private FixedRecyclerView mRecycler;
     private LinearLayoutManager mManager;
@@ -33,6 +34,7 @@ public class TrackView extends View {
 
     public TrackView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mContext = context;
         mView = LayoutInflater.from(context).inflate(R.layout.logistics_track, null);
         mOrderTrackView = mView.findViewById(R.id.track_view);
         mRecycler = mView.findViewById(R.id.recycler);
@@ -70,10 +72,15 @@ public class TrackView extends View {
     }
 
     class TrackAdapter extends RecyclerView.Adapter {
+        private int itemId;
+
+        public TrackAdapter(int itemId) {
+            this.itemId = itemId;
+        }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return null;
+            return new TrackVH(LayoutInflater.from(mContext).inflate(itemId, parent, false));
         }
 
         @Override
@@ -84,6 +91,13 @@ public class TrackView extends View {
         @Override
         public int getItemCount() {
             return 0;
+        }
+    }
+
+    class TrackVH extends RecyclerView.ViewHolder {
+
+        public TrackVH(View itemView) {
+            super(itemView);
         }
     }
 }
